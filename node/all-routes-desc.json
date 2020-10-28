@@ -3,42 +3,4 @@
   "prefix": "//a",
   "body": "// @desc\t\tTest endpoint is working\n// @route\t\t/test\n\n// @desc\t\tGet all $1s\n// @route\t\tGET /\n\n// @desc\t\tGet a $1 by id\n// @route\t\tGET /:id\n\n // @desc\t\tAdd a new $1\n// @route\t\tPOST /\n\n// @desc\t\tUpdate a $1 by id\n // @route\t\tPATCH /:id\n\n// @desc\t\tRemove a $1 by id\n// @route\t\tDELETE /:id\n",
   "description": "comments for // @desc // @route"
-},
-
-"reducers/index.js Boiler Plate": {
-  "scope": "javascript",
-  "prefix": "reduceboil",
-  "body": "const initialState = {\n\tducks: '',\n\tisLoading: false,\n\terror: ''\n}\n\nconst reducer = (state = initialState, action) => {\n\tswitch(action.type){\n\t\tcase FETCH_START:\n\t\t\treturn {\n\t\t\t\t...state,\n\t\t\t\tisLoading: true,\n\t\t\t\terror: ''\n\t\t\t}\n\t\tdefault:\n\t\t\treturn state\n\t}\n}\n\nexport default reducer",
-  "description": "step 1: reducer boiler plate"
-},
-
-"redux store index.js Boiler Plate": {
-  "scope": "javascript",
-  "prefix": "reduxindex",
-  "body": "//remember to install your dependencies! npm i; npm start; redux; react-redux; redux-thunk; axios; styled-components;\n\nimport React from 'react'\nimport ReactDOM from 'react-dom'\nimport {createStore, applyMiddleware, compose} from 'redux'\nimport {Provider} from 'react-redux'\nimport thunk from 'redux-thunk'\nimport reducer from './reducers'\n\nimport './index.css'\nimport App from './App'\n\nconst store = createStore(reducer, compose(applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : f => f));\n\nReactDOM.render(\n\t<React.StrictMode>\n\t\t<Provider store= {store}>\n\t\t\t<App />\n\t\t</Provider>\n\t</React.StrictMode>,\n\tdocument.getElementById('root')\n)",
-  "description": "step2: invite your relatives (dependencies) and have Provider go to the store"
-},
-"Redux list component Boiler Plate": {
-  "scope": "javascript",
-  "prefix": "reduxlist",
-  "body": "import React, {useEffect} from 'react'\nimport {connect} from 'react-redux'\nimport {fetchDucks} from '../actions'\nimport DucksCard from './DucksCard'\n\nconst DucksList = (props) => {\n\tuseEffect(() => {\n\t\tprops.fetchDucks()\n\t}, [])\n\n\treturn (\n\t\t<div>\n\t\t\t{\n\t\t\t\tprops.ducks.map(item => (\n\t\t\t\t\t<DucksCard key={item.id} duck={item}/>\n\t\t\t\t))\n\t\t\t}\n\t\t</div>\n\t)\n}\n\nconst mapStateToProps = (state) => {\n\treturn {\n\t\tducks: state.ducks,\n\t\tisLoading: state.isLoading,\n\t\terrors: state.errors\n\t}\n}\n\nexport default connect (mapStateToProps, {fetchDucks}) (DucksList)",
-  "description": "step 3: make a list component boil plate"
-},
-  "redux 3xtext input form component Boiler Plate": {
-    "scope": "javascript",
-    "prefix": "reduxform",
-    "body": "import React, {useState} from 'react'\nimport {connect} from 'react-redux'\nimport {postDucks} from '../actions'\n\nconst DucksForm = (props) => {\n\tconst [duck, setDuck] = useState({\n\t\tspecies: '',\n\t\tregion: '',\n\t\tcookTime: ''\n\t})\n\n\tconst submitHandler = event => {\n\t\tevent.preventDefault();\n\t\tprops.postDucks(duck)\n\t}\n\n\tconst changeHandler = event => {\n\t\tsetDuck({...duck, [event.target.name]: event.target.value})\n\t}\n\n\treturn (\n\t\t<div>\n\t\t\t<form onSubmit={submitHandler}>\n\t\t\t\t<input\n\t\t\t\t\tname='species'\n\t\t\t\t\ttype='text'\n\t\t\t\t\tvalue={props.species}\n\t\t\t\t\tonChange={changeHandler}\n\t\t\t\t\tplaceholder='enter species'\n\t\t\t\t/>\n\t\t\t\t<input\n\t\t\t\t\tname='region'\n\t\t\t\t\ttype='text'\n\t\t\t\t\tvalue={props.region}\n\t\t\t\t\tonChange={changeHandler}\n\t\t\t\t\tplaceholder='enter region'\n\t\t\t\t/>\n\t\t\t\t<input\n\t\t\t\t\tname='cookTime'\n\t\t\t\t\ttype='text'\n\t\t\t\t\tvalue={props.cookTime}\n\t\t\t\t\tonChange={changeHandler}\n\t\t\t\t\tplaceholder='enter cook time'\n\t\t\t\t/>\n\t\t\t\t<button>add that duck!</button>\n\t\t\t</form>\n\t\t</div>\n\t)\n}\n\nconst mapStateToProps = (state) => {\n\treturn {\n\t\tducks: state.ducks,\n\t\tisLoading: state.isLoading,\n\t\terror: state.error\n\t}\n}\n\nexport default connect (mapStateToProps, {postDucks}) (DucksForm)",
-    "description": "step 4: redux form component with 3x text input fields"
-  },
-  "actions/index.js redux boiler plate": {
-    "scope": "javascript",
-    "prefix":	"actionboil",
-    "body" : "import axios from 'axios'\n\nexport const FETCH_DUCKS_START = 'FETCH_DUCKS_START'\nexport const FETCH_DUCKS_SUCCESS = 'FETCH_DUCKS_SUCCESS'\nexport const FETCH_DUCKS_FAILURE = 'FETCH_DUCKS_FAILURE'\nexport const fetchDucks = () => (dispatch) => {\n\tdispatch({type: FETCH_DUCKS_START})\n\taxios\n\t\t.get('https://www.ducks.com')\n\t\t.then(response => {dispatch({type: FETCH_DUCKS_SUCCESS, payload: response.data})})\n\t\t.catch(error => dispatch({type: FETCH_DUCKS_FAILURE, payload: error.response}))\n}\n\nexport const POST_DUCKS_START = 'POST_DUCKS_START'\nexport const POST_DUCKS_SUCCESS = 'POST_DUCKS_SUCCESS'\nexport const POST_DUCKS_FAILURE = 'POST_DUCKS_FAILURE'\nexport const postDucks = (duck) => (dispatch) => {\n\tdispatch({type: POST_DUCKS_START})\n\taxios\n\t\t.post('https://www.ducks.com', duck)\n\t\t.then(response => {dispatch({type: POST_DUCKS_SUCCESS, payload: response.data})})\n\t\t.catch(error => dispatch({type: POST_DUCKS_FAILURE, payload: error.response}))\n}",
-    "description": "step 5: actions index.js boiler plate"
-  },
-  "reducers/index.js second pass boiler plate": {
-    "scope": "javascript",
-    "prefix": "redoreducersindex",
-    "body": "import { FETCH_DUCKS_START, FETCH_DUCKS_SUCCESS, FETCH_DUCKS_FAILURE, POST_DUCKS_START, POST_DUCKS_SUCCESS, POST_DUCKS_FAILURE } from '../actions'\n\nconst initialState = {\n\tducks: '',\n\tisLoading: false,\n\terror: ''\n}\n\nconst reducer = (state = initialState, action) => {\n\tswitch(action.type){\n\t\tcase FETCH_DUCKS_START:\n\t\t\treturn {\n\t\t\t\t...state,\n\t\t\t\tisLoading: true,\n\t\t\t\terror: ''\n\t\t\t}\n\t\tcase FETCH_DUCKS_SUCCESS:\n\t\t\treturn {\n\t\t\t\t...state,\n\t\t\t\tducks: action.payload,\n\t\t\t\tisLoading: false,\n\t\t\t\terror: ''\n\t\t\t}\n\t\tcase FETCH_DUCKS_FAILURE:\n\t\t\treturn {\n\t\t\t\t...state,\n\t\t\t\tisLoading: false,\n\t\t\t\terror: action.payload\n\t\t\t}\n\t\tcase POST_DUCKS_START:\n\t\t\treturn {\n\t\t\t\t...state,\n\t\t\t\tisLoading: true,\n\t\t\t\terror: ''\n\t\t\t}\n\t\tcase POST_DUCKS_SUCCESS:\n\t\t\treturn {\n\t\t\t\t...state,\n\t\t\t\tducks: action.payload,\n\t\t\t\tisLoading: false,\n\t\t\t\terror: ''\n\t\t\t}\n\t\tcase POST_DUCKS_FAILURE:\n\t\t\treturn {\n\t\t\t\t...state,\n\t\t\t\tisLoading: false,\n\t\t\t\terror: action.payload\n\t\t\t}\n\t\tdefault:\n\t\t\treturn state\n\t}\n}\nexport default reducer",
-    "description": "step 6: redux reducers index"
-  },
+}
