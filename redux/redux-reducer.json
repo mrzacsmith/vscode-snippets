@@ -1,0 +1,26 @@
+"reducer": {
+    "scope": "javascript",
+    "prefix": "redr",
+    "body": [
+        "",
+      "const initial_state = {",
+      "",
+      "}",
+      "",
+      "export const = $0 (state = initial_state, action) => {",
+      "",
+      "\tswitch (action.type) {",
+        "",
+      "\tcase ${1:type_name}:",
+      "\t\t\treturn {",
+      "\t\t\t\t ...state,", 
+      "",
+      "\t\t   }",
+      "\tdefault:",
+      "\t\treturn state",
+      "\t}",
+      "}",
+      
+    ],
+    "description": "Redux reducer template"
+  },
