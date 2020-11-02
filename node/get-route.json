@@ -1,0 +1,6 @@
+"GET route": {
+  "scope": "javascript",
+  "prefix": "getr",
+  "body": "router.get('/', (req, res) => { $1 })",
+  "description": "GET route"
+}
