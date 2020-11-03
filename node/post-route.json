@@ -1,0 +1,6 @@
+"POST route": {
+  "scope": "javascript",
+  "prefix": "getp",
+  "body": "router.post('/', (req, res) => { $1 })",
+  "description": "POST route"
+}
