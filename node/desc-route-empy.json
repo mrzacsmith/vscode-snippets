@@ -1,0 +1,9 @@
+"All endpoints": {
+    "scope": "javascript",
+    "prefix": "//d",
+    "body": [
+      "// @desc	\t\t$1",
+      "// @route \t\t$2",
+    ],
+    "description": "Empty @desc / @route"
+  }
