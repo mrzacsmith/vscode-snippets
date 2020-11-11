@@ -14,6 +14,7 @@ Snippets are organized to help provide easiest usage. If you have a snippet that
 
 - node
 - redux
+- knex
 
 ## Contribution
 
